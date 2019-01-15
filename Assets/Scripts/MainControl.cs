@@ -4,10 +4,15 @@ using UnityEngine;
 public class MainControl : MonoBehaviour
 {
     private const int LOGO_SECONDS = 5;
+    private const string LOGOPATH = "LogoCanvas";
+    private GameObject logo;
 
     // Start is called before the first frame update
     void Start()
     {
+        logo = this.transform.Find(LOGOPATH).gameObject;
+        logo.SetActive(true);
+
         StartCoroutine(ShowLogo());
     }
 
@@ -15,8 +20,7 @@ public class MainControl : MonoBehaviour
     {
         yield return new WaitForSeconds(LOGO_SECONDS);
         //hide logo
-        var obj = GameObject.Find("LogoCanvas");
-        obj.SetActive(false);
+        logo.SetActive(false);
         
         ShowBook("SampleBookFlowchart");
     }

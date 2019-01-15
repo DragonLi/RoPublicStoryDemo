@@ -30,6 +30,7 @@ namespace Fungus
             var gameObj = _sourceObject.Value;
             if (gameObj != null)
             {
+                gameObj.SetActive(true);
                 var visible = _visible.Value;
                 foreach (var sr in gameObj.GetComponentsInChildren<SpriteRenderer>())
                 {
