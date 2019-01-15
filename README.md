@@ -1,4 +1,12 @@
 RoPublicStoryDemo
+
+My birthday
+我的生日
+
+by Ernie Tse
+
+Co-authored with/Supported by Sam Chu,  Helen Chan, Jennifer Ford, Nicole Tavares
+
 Today is Saturday. The weather is very fine.
 今天是星期六，天朗气清。 
 I go to the park in the morning and do some exercises. I like doing exercise because it is good for my health.
@@ -25,3 +33,5 @@ When we arrive, food and a birthday cake are waiting on the table for us.
 我们到达的时候，食物和一个生日蛋糕早已经在餐桌上等待我们了。
 I also see some gifts and party hats. Why? Because today is my birthday! Mum had organized a party for me.
 我还看到一些礼物和派对帽子。为甚么呢？因为今天是我的生日！妈妈已经为我安排了生日派对。
+"Happy birthday, Ernie!" my family and Paul say happily.
+保罗和我的家人高兴的说：“阿妮，生日快乐！”
