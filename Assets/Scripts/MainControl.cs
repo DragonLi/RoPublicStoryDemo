@@ -6,14 +6,14 @@ using UnityEngine.Assertions;
 
 public class MainControl : MonoBehaviour
 {
-    public GameObject bookListGameObject;
+    [SerializeField] private GameObject bookListGameObject;
+    [SerializeField] private GameObject logoGameObject;
     
     private Dictionary<string,BookControl> bookList = new Dictionary<string,BookControl>();
     
     private const int LOGO_SECONDS = 5;
     private const string LOGOPATH = "LogoCanvas";
-    private GameObject logo;
-
+ 
     #region sample book demo
     
     private const string SAMPLE_BOOK_NAME = "My birthday";
@@ -31,19 +31,17 @@ public class MainControl : MonoBehaviour
     }
 
     private void InitGameObjects()
-    {
-        logo = transform.Find(LOGOPATH).gameObject;
-        
+    {        
 #if UNITY_EDITOR
         Assert.raiseExceptions = true;
         CheckResource();        
 #endif
-        
     }
 
     public void CheckResource()
     {
         Assert.IsTrue(bookListGameObject != null);
+        Assert.IsTrue(logoGameObject != null);
     }
 
     private void SearchBooks()
@@ -65,10 +63,10 @@ public class MainControl : MonoBehaviour
 
     private IEnumerator ShowLogo()
     {
-        logo.SetActive(true);
+        logoGameObject.SetActive(true);
         yield return new WaitForSeconds(LOGO_SECONDS);
         //hide logo
-        logo.SetActive(false);
+        logoGameObject.SetActive(false);
         
         ShowBook(SAMPLE_BOOK_NAME);
     }
