@@ -1,0 +1,37 @@
+curl -X POST -u "apikey:o78TiScMEQFPkeiFfYc3Faw_59dNdV3-BvYaWwV23Rnf" -H "Content-Type: application/json" -d '{  "text": "I still have a dream. It is a dream deeply rooted in the American dream. I have a dream that one day this nation will rise up and live out the true meaning of its creed: \"We hold these truths to be self-evident, that all men are created equal.\"",  "features": {    "sentiment": {},    "keywords": {}  }}' "https://gateway.watsonplatform.net/natural-language-understanding/api/v1/analyze?version=2018-11-16"
+
+curl -X POST -u "apikey:o78TiScMEQFPkeiFfYc3Faw_59dNdV3-BvYaWwV23Rnf" -H "Content-Type: application/json" -d '{"features": {    "semantic_roles": {}  },  "text": "IBM has one of the largest workforces in the world"}' "https://gateway.watsonplatform.net/natural-language-understanding/api/v1/analyze?version=2018-11-16"
+
+
+{
+  "features": {    "semantic_roles": {}  },  "text": "IBM has one of the largest workforces in the world"
+}
+
+
+{
+  "usage": {
+    "text_units": 1,
+    "text_characters": 50,
+    "features": 1
+  },
+  "semantic_roles": [
+    {
+      "subject": {
+        "text": "IBM"
+      },
+      "sentence": "IBM has one of the largest workforces in the world",
+      "object": {
+        "text": "one of the largest workforces in the world"
+      },
+      "action": {
+        "verb": {
+          "text": "have",
+          "tense": "present"
+        },
+        "text": "has",
+        "normalized": "have"
+      }
+    }
+  ],
+  "language": "en"
+}
