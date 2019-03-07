@@ -24,10 +24,16 @@ public class MainControl : MonoBehaviour
     void Start()
     {
         InitGameObjects();
+        //AskUserInto();
         SearchBooks();
         HideBooks();
         
         StartCoroutine(ShowLogo());
+    }
+    
+    [SerializeField] private Fungus.Flowchart testChart;
+    private void AskUserInto(){
+        testChart.SendFungusMessage("StartAskUser");
     }
 
     private void InitGameObjects()
@@ -42,6 +48,7 @@ public class MainControl : MonoBehaviour
     {
         Assert.IsTrue(bookListGameObject != null);
         Assert.IsTrue(logoGameObject != null);
+        Assert.IsTrue(testChart != null);
     }
 
     private void SearchBooks()
@@ -68,7 +75,8 @@ public class MainControl : MonoBehaviour
         //hide logo
         logoGameObject.SetActive(false);
         
-        ShowBook(SAMPLE_BOOK_NAME);
+        //ShowBook(SAMPLE_BOOK_NAME);
+        AskUserInto();
     }
 
     private void ShowBook(string bookName)
