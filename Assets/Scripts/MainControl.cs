@@ -1,19 +1,13 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Assertions;
 
 public class MainControl : MonoBehaviour
 {
     [SerializeField] private GameObject bookListGameObject;
-    [SerializeField] private GameObject logoGameObject;
     
     private Dictionary<string,BookControl> bookList = new Dictionary<string,BookControl>();
     
-    private const int LOGO_SECONDS = 5;
-    private const string LOGOPATH = "LogoCanvas";
- 
     #region sample book demo
     
     private const string SAMPLE_BOOK_NAME = "My birthday";
@@ -24,20 +18,23 @@ public class MainControl : MonoBehaviour
     void Start()
     {
         InitGameObjects();
-        //AskUserInto();
         SearchBooks();
         HideBooks();
         
-        StartCoroutine(ShowLogo());
+        //ShowBook(SAMPLE_BOOK_NAME);
+        AskUserInto();
     }
     
-    [SerializeField] private Fungus.Flowchart testChart;
+    [SerializeField] private Fungus.Flowchart askUserFlow;
+    private BookControl askUserInfoCtl;
     private void AskUserInto(){
-        testChart.SendFungusMessage("StartAskUser");
+        //askUserFlow.SendFungusMessage("StartFrontPage");
+        askUserInfoCtl.StartShowBook();
     }
 
     private void InitGameObjects()
-    {        
+    {
+        askUserInfoCtl = askUserFlow.GetComponent<BookControl>();
 #if UNITY_EDITOR
         Assert.raiseExceptions = true;
         CheckResource();        
@@ -47,8 +44,8 @@ public class MainControl : MonoBehaviour
     public void CheckResource()
     {
         Assert.IsTrue(bookListGameObject != null);
-        Assert.IsTrue(logoGameObject != null);
-        Assert.IsTrue(testChart != null);
+        Assert.IsTrue(askUserFlow != null);
+        Assert.IsNotNull(askUserInfoCtl);
     }
 
     private void SearchBooks()
@@ -68,17 +65,6 @@ public class MainControl : MonoBehaviour
         }
     }
 
-    private IEnumerator ShowLogo()
-    {
-        logoGameObject.SetActive(true);
-        yield return new WaitForSeconds(LOGO_SECONDS);
-        //hide logo
-        logoGameObject.SetActive(false);
-        
-        //ShowBook(SAMPLE_BOOK_NAME);
-        AskUserInto();
-    }
-
     private void ShowBook(string bookName)
     {
         BookControl ctl;
@@ -86,5 +72,10 @@ public class MainControl : MonoBehaviour
         {
             ctl.StartShowBook();
         }
+        #if UNITY_EDITOR
+        else{
+            Debug.Log("Can't not show book: book not found: "+bookName);
+        }
+        #endif
     }
 }

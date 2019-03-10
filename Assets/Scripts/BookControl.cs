@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using Fungus;
 using UnityEngine;
 using UnityEngine.Assertions;
@@ -13,6 +12,7 @@ public class BookControl : MonoBehaviour
     private const string FRONT_PAGE_NAME = "StartFrontPage";
     private GameObject pageListObj;
     private Flowchart bookFlowchart;
+    private bool _isStarted;
 
     // Start is called before the first frame update
     void Start()
@@ -46,6 +46,7 @@ public class BookControl : MonoBehaviour
         gameObject.SetActive(true);
         
         StartCoroutine(StartFrontPage());
+        _isStarted = true;
     }
 
     private IEnumerator StartFrontPage()
@@ -59,9 +60,15 @@ public class BookControl : MonoBehaviour
     public void Hide()
     {
         gameObject.SetActive(false);
+        _isStarted = false;
 
 #if UNITY_EDITOR
         Assert.IsFalse(string.IsNullOrEmpty(bookName),"Invalid book name");
 #endif
+    }
+
+    public bool IsStarted()
+    {
+        return _isStarted;
     }
 }
